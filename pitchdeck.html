@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENT Protocol - Pitch Deck</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #0066FF;
+            --dark-blue: #003380;
+            --navy: #1a1a2e;
+            --black: #0f0f23;
+            --light-blue: #4d94ff;
+            --accent: #00d4ff;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #6c757d;
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--navy) 0%, var(--black) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--primary-blue) 100%);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .slide-content {
+            width: 100%;
+            max-width: 1200px;
+            z-index: 2;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 102, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 3;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray-medium);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            text-align: center;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+        }
+        
+        .metric {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            font-weight: 500;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-item {
+            background: rgba(0, 102, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 102, 255, 0.3);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+        
+        .cta-section {
+            text-align: center;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background: var(--gradient-primary);
+            font-weight: 600;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+.logo {
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem auto;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-large {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 3rem auto;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--primary-blue);
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.4rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .slide { padding: 15px; }
+            .slide-content { padding: 0 15px; }
+            .metric-value { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .comparison-table { font-size: 0.8rem; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .metric-value { font-size: 1.5rem; }
+            .slide-number { top: 15px; right: 15px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide" id="slide-1">
+            <div class="slide-number">01</div>
+            <div class="slide-content">
+                <div class="logo logo-large floating">
+                    <img src="https://raw.githubusercontent.com/Ethan27499/imgZent/main/Frame%202085667329%20(1).png" alt="ZENT Protocol Logo">
+                </div>
+                <h1 class="floating">ZENT Protocol</h1>
+                <p class="subtitle">The Intent-Centric Privacy built on Aptos</p>
+                <div class="grid grid-3">
+                    <div class="metric">
+                        <span class="metric-value">AI-Powered</span>
+                        <span class="metric-label">Intent-Centric Execution </span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">ZK Proof</span>
+                        <span class="metric-label">Anonymous Transactions</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">Simplifying DeFi </span>
+                        <span class="metric-label">Operations for users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem -->
+        <div class="slide" id="slide-2">
+            <div class="slide-number">02</div>
+            <div class="slide-content">
+                <h2>Why ZENT Protocol Exists</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>The Vision</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6; margin: 1.5rem 0;">
+                            <strong style="color: var(--accent);">Imagine:</strong> Your grandmother wants to earn yield on her savings. 
+                            Instead of learning about wallets, gas fees, and slippage, she simply says:
+                        </p>
+                        <p style="font-style: italic; color: var(--accent); margin: 1.5rem 0; font-size: 1.2rem;">
+                            "I want to invest $1000 safely and earn more than my bank account"
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            <strong>That's why ZENT exists.</strong> To bridge the gap between human intent and blockchain execution.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>The Reality We're Changing</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <div style="padding: 1rem; background: rgba(255, 0, 0, 0.1); border-radius: 8px; margin: 1rem 0;">
+                                <strong style="color: #ff6b6b;">Current Web3:</strong> Technical barrier after barrier
+                            </div>
+                            <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+                                <li style="margin: 0.8rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0; color: #ff6b6b;">✗</span>
+                                    Learn 50+ new concepts before first transaction
+                                </li>
+                                <li style="margin: 0.8rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0; color: #ff6b6b;">✗</span>
+                                    Manage private keys and multiple wallets
+                                </li>
+                                <li style="margin: 0.8rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0; color: #ff6b6b;">✗</span>
+                                    Navigate complex DeFi interfaces
+                                </li>
+                                <li style="margin: 0.8rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0; color: #ff6b6b;">✗</span>
+                                    Risk losing funds to user errors
+                                </li>
+                            </ul>
+                            <div style="padding: 1rem; background: rgba(0, 212, 255, 0.1); border-radius: 8px; margin: 1rem 0;">
+                                <strong style="color: var(--accent);">ZENT's Future:</strong> Natural conversation
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Our Founding Principle</h3>
+                    <div class="grid grid-2">
+                        <div>
+                            <p style="font-size: 1.2rem; line-height: 1.6;">
+                                <strong>Web3 should be accessible to everyone,</strong> not just crypto natives. 
+                                Financial freedom shouldn't require a computer science degree.
+                            </p>
+                        </div>
+                        <div>
+                            <div style="padding: 2rem; background: var(--gradient-primary); border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 1rem; font-size: 1.4rem;">ZENT's Mission</h4>
+                                <p style="font-size: 1.1rem; font-weight: 600;">
+                                    Make Web3 as easy as having a conversation
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution -->
+        <div class="slide" id="slide-3">
+            <div class="slide-number">03</div>
+            <div class="slide-content">
+                <h2>ZENT Solution: Intent → Execution</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>User Says:</h3>
+                        <p style="font-size: 1.2rem; font-style: italic; color: var(--accent); margin: 1rem 0;">
+                            "I want to invest 10 million VND in crypto safely, with returns higher than banks."
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>ZENT AI Executes:</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <strong>Intent Recognition</strong><br>
+                                Safe investment with profit optimization
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Risk Assessment</strong><br>
+                                Conservative profile analysis
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Portfolio Construction</strong><br>
+                                40% stablecoin farming, 30% staking, 30% LP
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Auto Execution</strong><br>
+                                Cross-chain with MEV protection
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Core Features -->
+        <div class="slide" id="slide-4">
+            <div class="slide-number">04</div>
+            <div class="slide-content">
+                <h2>Core Features</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="feature-icon">AI</div>
+                        <h3>AI Conversational Interface</h3>
+                        <p>20+ languages, context-aware understanding, proactive suggestions based on market conditions</p>
+                    </div>
+                    <div class="card">
+                        <div class="feature-icon">EXE</div>
+                        <h3>Intent Execution Engine</h3>
+                        <p>Smart routing across 50+ protocols, gas optimization, MEV protection, automated risk management</p>
+                    </div>
+                    <div class="card">
+                        <div class="feature-icon">ZK</div>
+                        <h3>Privacy-First Architecture</h3>
+                        <p>Zero-Knowledge Proofs, homomorphic encryption, trusted execution environments</p>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3>AI Model Performance</h3>
+                        <div class="stats-grid">
+                            <div class="metric">
+                                <span class="metric-value">99.7%</span>
+                                <span class="metric-label">Intent Classification Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50M+</span>
+                                <span class="metric-label">Training Conversations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Cross-Chain Support</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Aptos</span>
+                            <span class="tech-item">Ethereum</span>
+                            <span class="tech-item">BSC</span>
+                            <span class="tech-item">Polygon</span>
+                            <span class="tech-item">Arbitrum</span>
+                            <span class="tech-item">Optimism</span>
+                            <span class="tech-item">Multichain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Aptos Integration -->
+        <div class="slide" id="slide-5">
+            <div class="slide-number">05</div>
+            <div class="slide-content">
+                <h2>Why Aptos?</h2>
+                <div class="grid grid-2">
+                    <div>
+                        <div class="card">
+                            <h3>Block-STM Parallel Execution</h3>
+                            <p>100,000+ TPS ideal for complex multi-step intent execution with predictable performance</p>
+                        </div>
+                        <div class="card">
+                            <h3>Move Programming Language</h3>
+                            <p>Resource-oriented model, formal verification, memory safety eliminates common vulnerabilities</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <h3>Account Abstraction</h3>
+                            <p>Sponsored transactions, multi-sig support, flexible authentication methods</p>
+                        </div>
+                        <div class="card">
+                            <h3>Ecosystem Integration</h3>
+                            <p>Partnerships with Thala Protocol, PancakeSwap, Aries Markets, Aptos Foundation support</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Custom Move Module Example</h3>
+                    <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; color: var(--accent); font-size: 0.9rem;">
+module ZENT::IntentExecution {
+    struct UserIntent has key, store {
+        user_address: address,
+        intent_hash: vector&lt;u8&gt;,
+        execution_plan: ExecutionPlan,
+        privacy_proof: vector&lt;u8&gt;,
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Market & Competition -->
+        <div class="slide" id="slide-6">
+            <div class="slide-number">06</div>
+            <div class="slide-content">
+                <h2>Market Opportunity & Competition</h2>
+                <div class="grid grid-2">
+                    <div>
+                        <div class="card">
+                            <h3>Target Market</h3>
+                            <div class="stats-grid">
+                                <div class="metric">
+                                    <span class="metric-value">$200B+</span>
+                                    <span class="metric-label">DeFi TVL</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">4%</span>
+                                    <span class="metric-label">Global Crypto Adoption</span>
+                                </div>
+                            </div>
+                            <p>Massive opportunity to serve the remaining 96% with accessible Web3 interfaces</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <h3>Competitive Advantages</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin: 0.8rem 0; color: var(--accent);">✓ AI-powered conversational interface</li>
+                                <li style="margin: 0.8rem 0; color: var(--accent);">✓ Web3-specialized training data</li>
+                                <li style="margin: 0.8rem 0; color: var(--accent);">✓ Comprehensive DeFi ecosystem coverage</li>
+                                <li style="margin: 0.8rem 0; color: var(--accent);">✓ Strong zero-knowledge privacy</li>
+                                <li style="margin: 0.8rem 0; color: var(--accent);">✓ Aptos-native optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Traditional DEX</th>
+                            <th>Intent Protocols</th>
+                            <th class="highlight">ZENT Protocol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Natural Language</td>
+                            <td>❌ Manual Config</td>
+                            <td>❌ Technical Interface</td>
+                            <td class="highlight">✅ Conversational AI</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-step Strategies</td>
+                            <td>❌ Simple Swaps Only</td>
+                            <td>⚠️ Limited Use Cases</td>
+                            <td class="highlight">✅ Complex DeFi Strategies</td>
+                        </tr>
+                        <tr>
+                            <td>Privacy Protection</td>
+                            <td>❌ Basic</td>
+                            <td>⚠️ Limited</td>
+                            <td class="highlight">✅ Zero-Knowledge</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 7: Use Cases -->
+        <div class="slide" id="slide-7">
+            <div class="slide-number">07</div>
+            <div class="slide-content">
+                <h2>Use Cases & Applications</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Individual Users</h3>
+                        <div style="margin: 1rem 0;">
+                            <strong>Beginner Investment:</strong><br>
+                            "Invest $500 safely with better returns than banks"<br>
+                            <span class="highlight">→ Auto-allocate: 40% stablecoin, 35% staking, 25% LP</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Advanced DeFi:</strong><br>
+                            "Delta-neutral yield farming APT-USDC with 10x leverage"<br>
+                            <span class="highlight">→ Auto hedging & liquidation protection</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Professional & Enterprise</h3>
+                        <div style="margin: 1rem 0;">
+                            <strong>Automated Arbitrage:</strong><br>
+                            "Monitor APT prices, execute arbitrage >0.5% profit"<br>
+                            <span class="highlight">→ Real-time monitoring across 20+ exchanges</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Treasury Management:</strong><br>
+                            "$50M treasury: 60% stable, 30% growth, 10% trading"<br>
+                            <span class="highlight">→ Enterprise-grade portfolio tools</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3>Enterprise Applications</h3>
+                        <p><strong>Payroll & Benefits:</strong> 1,000 employees, multi-crypto, auto tax compliance</p>
+                        <p><strong>Supply Chain Finance:</strong> Dynamic supplier payments based on delivery performance</p>
+                    </div>
+                    <div class="card">
+                        <h3>DeFi Protocol Integration</h3>
+                        <p><strong>Protocol Governance:</strong> Automated proposal execution based on sentiment analysis</p>
+                        <p><strong>Liquidity Management:</strong> Optimize POL across multiple DEXes for maximum efficiency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Technology Stack -->
+        <!-- <div class="slide" id="slide-8">
+            <div class="slide-number">08</div>
+            <div class="slide-content">
+                <h2>Technology Stack</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Blockchain Infrastructure</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Aptos (Move)</span>
+                            <span class="tech-item">Ethereum</span>
+                            <span class="tech-item">BSC</span>
+                            <span class="tech-item">LayerZero</span>
+                            <span class="tech-item">Chainlink</span>
+                            <span class="tech-item">Pyth</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>AI & Machine Learning</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Fine-tuned GPT-4</span>
+                            <span class="tech-item">NVIDIA H100</span>
+                            <span class="tech-item">PyTorch</span>
+                            <span class="tech-item">TensorRT</span>
+                            <span class="tech-item">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3>Security & Privacy</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">ZK-SNARK</span>
+                            <span class="tech-item">Homomorphic Encryption</span>
+                            <span class="tech-item">Intel SGX</span>
+                            <span class="tech-item">HSM</span>
+                            <span class="tech-item">SOC 2</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Backend & Infrastructure</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Kubernetes</span>
+                            <span class="tech-item">PostgreSQL</span>
+                            <span class="tech-item">Redis</span>
+                            <span class="tech-item">AWS</span>
+                            <span class="tech-item">Next.js 14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Slide 9: Roadmap -->
+        <div class="slide" id="slide-9">
+            <div class="slide-number">09</div>
+            <div class="slide-content">
+                <h2>Development Roadmap</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Q3-Q4 2025: Foundation & MVP</h3>
+                        <p>✅ Core intent analysis engine<br>
+                        ✅ Aptos integration with Thala & PancakeSwap<br>
+                        ✅ Initial user feedback & iteration</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Q1-Q2 2026: Beta Launch & Expansion</h3>
+                        <p>🚀 Production-ready Beta launch<br>
+                        📊 Target: 10K+ users, $100M+ TVL<br></p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Q3-Q4 2026: Mainnet & Growth</h3>
+                        <p>🌐 Mainnet with 20+ blockchains, 100+ protocols<br>
+                        📈 Target: 100K+ users, $1B+ TVL<br>
+                        🏢 Enterprise features & institutional clients</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2027+: Ecosystem Expansion</h3>
+                        <p>🔮 50+ blockchain support<br>
+                        🛡️ Quantum-resistant encryption<br>
+                        👑 Market leader in intent-based Web3 interfaces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Team & Partners -->
+        <div class="slide" id="slide-10">
+            <div class="slide-number">10</div>
+            <div class="slide-content">
+                <h2>Team & Partners</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Core Team</h3>
+                        <div style="margin: 1rem 0;">
+                            <strong>Ethan Nguyen: CEO & Co-Founder</strong><br>
+                            <span class="highlight">Builder with + 5 yrs experience</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Tian Nguyen: CTO & Co-Founder</strong><br>
+                            <span class="highlight">Blockchain Architect/ZK Engineer</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Hiro: Solution Architect/Full-Stack AI Engineer</strong><br>
+                            <span class="highlight">B.Sc. in Computer Science</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Hoang Trieu Vy Le: Head of AI</strong><br>
+                            <span class="highlight">Ph.D degree in Signal & Image Processing from ENS Lyon/France/AI researcher in Microsoft</span>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong>Tien Le: Graphic Designer/Artist</strong><br>
+                            <span class="highlight">Creative visual designer with 3 yrs of experience</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Strategic Partners</h3>
+                        <div style="margin: 2rem 0;">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">Blockchain Ecosystem</h4>
+                            <div class="tech-stack">
+                                <span class="tech-item">Aptos Foundation</span>
+                            </div>
+                        </div>
+                        <div style="margin: 2rem 0;">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">DeFi Protocols</h4>
+                            <div class="tech-stack">
+                                <span class="tech-item">Thala Protocol</span>
+                                <span class="tech-item">PancakeSwap</span>
+                                <span class="tech-item">Aries Markets</span>
+                                <span class="tech-item">LayerZero Labs</span>
+                            </div>
+                        </div>
+                        <div style="margin: 2rem 0;">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">Technology</h4>
+                            <div class="tech-stack">
+                                <span class="tech-item">Microsoft Azure</span>
+                                <span class="tech-item">NVIDIA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 11: Risk Assessment -->
+        <div class="slide" id="slide-11">
+            <div class="slide-number">11</div>
+            <div class="slide-content">
+                <h2>Risk Assessment & Mitigation</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Technical Risks</h3>
+                        <p><strong>Level: Medium</strong></p>
+                        <div style="margin: 1rem 0;">
+                            <strong>Risks:</strong><br>
+                            • Smart contract vulnerabilities<br>
+                            • AI model reliability<br>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong class="highlight">Mitigation:</strong><br>
+                            • Multiple security audits<br>
+                            • Formal verification<br>
+                            • Bug bounty programs<br>
+                            • Human oversight systems
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Market Risks</h3>
+                        <p><strong>Level: High</strong></p>
+                        <div style="margin: 1rem 0;">
+                            <strong>Risks:</strong><br>
+                            • Regulatory changes<br>
+                            • Market volatility<br>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong class="highlight">Mitigation:</strong><br>
+                            • Proactive legal compliance<br>
+                            • Legal expert consultation<br>
+                            • User risk management tools<br>
+                            • Diversified revenue streams
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Operational Risks</h3>
+                        <p><strong>Level: Medium</strong></p>
+                        <div style="margin: 1rem 0;">
+                            <strong>Risks:</strong><br>
+                            • Key personnel loss<br>
+                            • Cyber attacks<br>
+                        </div>
+                        <div style="margin: 1rem 0;">
+                            <strong class="highlight">Mitigation:</strong><br>
+                            • Competitive compensation<br>
+                            • Succession planning<br>
+                            • Multi-layered security<br>
+                            • Regular audits
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Call to Action -->
+        <div class="slide" id="slide-12">
+            <div class="slide-number">12</div>
+            <div class="slide-content">
+                <div class="cta-section">
+                    <h2>Join the Web3 Revolution</h2>
+                    <p class="subtitle" style="color: rgba(255,255,255,0.9);">
+                        ZENT Protocol is transforming how humanity interacts with decentralized finance
+                    </p>
+                    <div class="grid grid-3" style="margin: 2rem 0;">
+                        <div class="card" style="background: rgba(255,255,255,0.1);">
+                            <h3>For Investors</h3>
+                            <p>Join our $50M Series A round and be part of the future of Web3 accessibility</p>
+                            <a href="mailto:investors@zent.ai" class="btn">Invest Now</a>
+                        </div>
+                        <div class="card" style="background: rgba(255,255,255,0.1);">
+                            <h3>For Developers</h3>
+                            <p>Build the future of conversational Web3 with our world-class team</p>
+                            <a href="mailto:careers@zent.ai" class="btn">Join Team</a>
+                        </div>
+                        <div class="card" style="background: rgba(255,255,255,0.1);">
+                            <h3>For Users</h3>
+                            <p>Get early access to the most intuitive Web3 experience ever created</p>
+                            <a href="https://zent.ai" class="btn">Get Early Access</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3>Contact Information</h3>
+                        <div style="line-height: 2;">
+                            <p><strong>Website:</strong> https://zent.ai</p>
+                            <p><strong>Email:</strong> hello@zent.ai</p>
+                            <p><strong>Twitter:</strong> @zentprotocol</p>
+                            <p><strong>Discord:</strong> discord.gg/zent</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Follow Us</h3>
+                        <div style="line-height: 2;">
+                            <p><strong>LinkedIn:</strong> linkedin.com/company/zentprotocol</p>
+                            <p><strong>GitHub:</strong> github.com/zentprotocol</p>
+                            <p><strong>Medium:</strong> medium.com/zentprotocol</p>
+                            <p><strong>Farcaster:</strong> farcaster.xyz/zentprotocol</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Thank You -->
+        <div class="slide" id="slide-13">
+            <div class="slide-number">13</div>
+            <div class="slide-content" style="text-align: center;">
+                <div class="logo floating" style="margin: 2rem auto;"><img src="https://raw.githubusercontent.com/Ethan27499/imgZent/main/Frame%202085667329%20(1).png" alt="ZENT Protocol Logo"></div>
+                <h1 style="font-size: 4rem; margin-bottom: 2rem;">Thank You</h1>
+                <p class="subtitle">Questions & Discussion</p>
+                <div class="floating" style="margin: 3rem 0;">
+                    <div style="font-size: 4rem; margin: 2rem 0;">⚡</div>
+                </div>
+                <div class="cta-section" style="margin-top: 3rem;">
+                    <h3>Ready to make Web3 accessible to everyone?</h3>
+                    <p style="margin: 1rem 0; font-size: 1.2rem;">Let's build the conversational future of decentralized finance together.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="mailto:investors@zent.ai" class="btn">Start the Conversation</a>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem; opacity: 0.7;">
+                    <p><strong>ZENT Protocol</strong> - Where Intent Meets Execution</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">
+                        This presentation contains forward-looking statements. Please conduct your own research (DYOR) before making investment decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-dot active" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+        <div class="nav-dot" data-slide="6"></div>
+        <div class="nav-dot" data-slide="7"></div>
+        <div class="nav-dot" data-slide="8"></div>
+        <div class="nav-dot" data-slide="9"></div>
+        <div class="nav-dot" data-slide="10"></div>
+        <div class="nav-dot" data-slide="11"></div>
+        <div class="nav-dot" data-slide="12"></div>
+        <div class="nav-dot" data-slide="13"></div>
+        <div class="nav-dot" data-slide="14"></div>
+        <div class="nav-dot" data-slide="15"></div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const targetSlide = document.getElementById(`slide-${index + 1}`);
+                targetSlide.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Update active navigation dot on scroll
+        const updateActiveDot = () => {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+
+                if (scrollPos >= slideTop && scrollPos <= slideBottom) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                }
+            });
+        };
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentSlide = document.querySelector('.nav-dot.active');
+            const currentIndex = Array.from(document.querySelectorAll('.nav-dot')).indexOf(currentSlide);
+            
+            if (e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                if (currentIndex < 14) {
+                    document.getElementById(`slide-${currentIndex + 2}`).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (currentIndex > 0) {
+                    document.getElementById(`slide-${currentIndex}`).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Add scroll event listener
+        window.addEventListener('scroll', updateActiveDot);
+
+        // Auto-hide navigation after inactivity
+        let navTimer;
+        const navigation = document.querySelector('.navigation');
+
+        const showNavigation = () => {
+            navigation.style.opacity = '1';
+            clearTimeout(navTimer);
+            navTimer = setTimeout(() => {
+                navigation.style.opacity = '0.7';
+            }, 3000);
+        };
+
+        document.addEventListener('mousemove', showNavigation);
+        document.addEventListener('scroll', showNavigation);
+
+        // Initial call
+        showNavigation();
+    </script>
+</body>
+</html>
